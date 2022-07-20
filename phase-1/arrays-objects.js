@@ -56,12 +56,10 @@ function filterPokemonByType(list, pokemonType) {
         return item.type === pokemonType
     });
 
-
     return filteredPokemon;
 }
 
 //console.log('Filtered', filterPokemonByType(pokemon, 'normal'));
-
 
 // Create a function; when given a list it should print pokemon details
 
@@ -107,6 +105,7 @@ function releasePokemonNonDestructively(pokeball) {
 // Spread operator in objects
 // obj1 = { a: 1, b: 2 }; obj2 = { a:4, c: 7 }
 // {...obj1, ...obj2}
+// obj1 = {obj2}
 
 console.log('before: ', pokeball1)
 
@@ -130,7 +129,6 @@ console.log('after release: pokeball2', pokeball2);
 
 // Scenario: Pokeball will catch pokemon when empty; Should throw error otherwise
 
-
 function catchPokemon(pokeball, pokemon) {
     if (pokeball.pokemon !== null) {
         throw new Error('pokeball is not empty');    
@@ -139,4 +137,73 @@ function catchPokemon(pokeball, pokemon) {
     pokeball.pokemon = pokemon;
 }
 
-throw new Error('Boogie trap');
+
+const ash = {
+    pokemon: [...pokemon],
+    name: 'Ash',
+    profession: 'pokemon trainer',
+    hobbies: ['talks a lot', 'catches pokemon'],
+    address: {
+        streetName: 'Pallet town',
+        region: 'Pokemon county',
+        country: 'Pokemon world'
+    },
+}
+
+// Write a function that traverses a nested object. Eg: person
+
+function traversePerson(person) {
+    for (const key in person) {
+        const element = person[key];
+
+        if (typeof person[key] === 'object') {
+            console.log(key + ": ");
+
+            for (const key2 in element) {
+                const nestedElement = element[key2];
+                if (typeof element[key2] === 'object') {
+
+                    console.log(key2 + ": ");
+                    for (const key3 in nestedElement) {
+                        console.log('\t' + key3 + ": " + nestedElement[key3]);
+                    }
+                } else {
+                    console.log('\t' + key2 + ": " + element[key2]);
+                }
+
+            }
+
+        } else {
+            console.log(key + ": " + person[key]);
+        }
+    }
+}
+
+// Traverse a person iteratively
+traversePerson(ash);
+
+
+function loop(x) {
+    if (x >= 10) // "x >= 10" is the exit condition
+        return;
+
+    console.log(x)
+    loop(x + 1); // the recursive call
+}
+
+function traversePersonRecursively(person, tabs) {
+    for (const attribute in person) {
+        const value = person[attribute];
+        if (typeof value !== 'object') {
+            console.log(tabs + attribute + ": " + value);
+        } else {
+            console.log(tabs + attribute + ": ");
+            traversePersonRecursively(value, `${tabs}-`);
+        }
+    }
+}
+
+traversePersonRecursively(ash, '-');
+
+// Write a function that takes a number and adds all the numbers upto 0;
+// example: input: 5; output: 15; reason: 5 + 4 + 3 + 2 + 1
