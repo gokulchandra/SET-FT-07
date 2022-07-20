@@ -1,0 +1,22 @@
+{
+  "name": "set-ft-07",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gokulchandra/SET-FT-07.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gokulchandra/SET-FT-07/issues"
+  },
+  "homepage": "https://github.com/gokulchandra/SET-FT-07#readme",
+  "dependencies": {
+    "jest": "^28.1.3"
+  }
+}
