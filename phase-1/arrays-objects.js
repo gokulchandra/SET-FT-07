@@ -205,5 +205,12 @@ function traversePersonRecursively(person, tabs) {
 
 traversePersonRecursively(ash, '-');
 
+// Write it as an iterative function and then rewrite as a recursive function
 // Write a function that takes a number and adds all the numbers upto 0;
-// example: input: 5; output: 15; reason: 5 + 4 + 3 + 2 + 1
+// example: input: 5; output: 15; reason: 5 + 4 + 3 + 2 + 1 + 0
+
+/*
+    1. Implement function itertatively
+    2. Write the tests, and they should all pass of course
+    3. Rewrite the function as a recursive, tests should keep passing
+*/
