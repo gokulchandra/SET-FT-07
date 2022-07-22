@@ -18,7 +18,7 @@ function addItem(task) {
 
     node.innerText = task;
 
-    node.id = Date.now();
+    node.id = Date.now() + task;
 
     node.addEventListener('click', markAsCompleted);
 
