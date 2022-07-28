@@ -1,7 +1,7 @@
-/* 
+/*
     Debugging the lab!
 
-    We will build on top of our tasks example. 
+    We will build on top of our tasks example.
     We will be saving/fetching data from a mock server
     We will also work on setTimeout, SetInterval
 
@@ -38,8 +38,12 @@ function addItem(task) {
 
     listNode.appendChild(node);
 
-    const createdItem = { id: node.id, name: task.name, completed: task.completed || false };
-    
+    const createdItem = {
+        id: node.id,
+        name: task.name,
+        completed: task.completed || false,
+    };
+
     items.push(createdItem);
 
     return createdItem;
@@ -51,7 +55,7 @@ function onEnter(event) {
     }
 }
 
-function getItem() {    
+function getItem() {
     const input = document.getElementById('task-name');
     const trimmed = input.value.trim();
     if (trimmed === '') {
@@ -65,9 +69,11 @@ function getItem() {
     input.value = '';
 }
 
-function markAsCompleted(event) {
+async function markAsCompleted(event) {
     const itemIndex = items.findIndex(item => item.name === event.target.innerText);
     items[itemIndex].completed = true;
+
+    await complete.apply(items[itemIndex]);
 
     event.target.style['text-decoration'] = 'line-through'
 }
@@ -81,8 +87,18 @@ function saveTask(task) {
         },
         body: JSON.stringify(task)
     }).then(res => res.json)
-    .then(json => {
-        console.log('Saved task', task)
-        console.log(json);
+        .then(json => {
+            console.log('Saved task', task)
+            console.log(json);
+        })
+}
+
+function complete () {
+    return fetch(serverUrl + '/' + this.id, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ id: this.id, name: this.name, completed: true })
     })
 }

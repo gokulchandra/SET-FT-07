@@ -3,17 +3,17 @@
     {
       "id": 1001,
       "name": "Task 1",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801034174",
       "name": "Task 3",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801231506",
       "name": "Need to learn Context",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801241533",
@@ -23,12 +23,12 @@
     {
       "id": "1658801259935",
       "name": "Promises vs callbacks",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801292654",
       "name": "whats happening?",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801326175",
@@ -48,7 +48,7 @@
     {
       "id": "1658801507320",
       "name": "lamsdla smd",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801508355",
@@ -58,7 +58,7 @@
     {
       "id": "1658801509515",
       "name": "lmka sdlmal kmd",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801511238",
@@ -73,7 +73,7 @@
     {
       "id": "1658801512974",
       "name": "lakm dlmad",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1658801513755",
