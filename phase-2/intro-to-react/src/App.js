@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Title from './Title';
 import TaskList from './TaskList'
 import TaskItem from "./TaskItem";
+import NewTaskItem from './NewTaskItem';
+import IncompleteBanner from './IncompleteBanner';
+
 
 function App() {
 
-  const [tasks, setTasks] = useState([
-    { id: 1, name: 'task 1', done: false },
-    { id: 2, name: 'task 2', done: false },
-    { id: 3, name: 'task 3', done: false },
-  ]);
+  const [tasks, setTasks] = useState([]);
+  const [intervalId, setIntervalId] = useState(null);
+
+  useEffect(() => {
+
+   setIntervalId(setInterval(() => {
+      fetch('https://run.mocky.io/v3/c6db7d7c-08ec-424f-8d88-12057a9b5fe1')
+      .then(res => res.json())
+      .then(data => setTasks(data))
+    }, 10000));
+
+
+    return () => {
+      clearInterval(intervalId);
+    }
+
+    
+  }, []);
 
   const handleClick = (id) => {
     const newTasks = [...tasks];
@@ -20,7 +36,6 @@ function App() {
     setTasks(newTasks);
   }
 
-
   const improvedHandleClick = function (index) {
     return function () {
       const newTasks = [...tasks];
@@ -29,9 +44,20 @@ function App() {
     }
   }
 
-  return (
+  const createTask = function (taskName) {
+    const newTask = {
+      id: Date.now(),
+      name: taskName,
+      done: false
+    }
+
+    setTasks([...tasks, newTask]);
+  }
+
+   return (
     <React.Fragment>
       <Title />
+      { tasks.some(task => !task.done) && <IncompleteBanner tasks={tasks} /> }
       <TaskList>
         {
           tasks.map(({ name, id, done }, index) => {
@@ -40,6 +66,7 @@ function App() {
         }
       </TaskList>
 
+      <NewTaskItem createTask={createTask} />
     </React.Fragment>
   );
 }
