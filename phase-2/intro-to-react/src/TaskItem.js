@@ -1,6 +1,10 @@
-function TaskItem({ name }) {
+function TaskItem({ name, handleClick, done }) {
 
-    return <li>{name}</li>
+    const markAsDone = () => {
+        handleClick()
+    }
+
+    return <li onClick={markAsDone}>{name} {done && ' Task complete'}</li>
 }
 
 export default TaskItem;
