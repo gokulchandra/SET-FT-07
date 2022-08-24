@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Title from './Title';
 import TaskList from './TaskList'
 import TaskItem from "./TaskItem";
 import NewTaskItem from './NewTaskItem';
 import IncompleteBanner from './IncompleteBanner';
+import Form from './FormAbstraction';
 
 
 function App() {
 
   const [tasks, setTasks] = useState([]);
-  const [intervalId, setIntervalId] = useState(null);
+  const [num, setNum] = useState(0);
+ 
 
   useEffect(() => {
-
-   setIntervalId(setInterval(() => {
-      fetch('https://run.mocky.io/v3/c6db7d7c-08ec-424f-8d88-12057a9b5fe1')
+    fetch('https://run.mocky.io/v3/c6db7d7c-08ec-424f-8d88-12057a9b5fe1')
       .then(res => res.json())
       .then(data => setTasks(data))
-    }, 10000));
-
-
-    return () => {
-      clearInterval(intervalId);
-    }
-
-    
   }, []);
 
   const handleClick = (id) => {
@@ -51,13 +43,15 @@ function App() {
       done: false
     }
 
-    setTasks([...tasks, newTask]);
+    const newTasks = [...tasks, newTask];
+    setTasks(newTasks);
   }
 
-   return (
+
+  return (
     <React.Fragment>
       <Title />
-      { tasks.some(task => !task.done) && <IncompleteBanner tasks={tasks} /> }
+      {tasks.some(task => !task.done) && <IncompleteBanner tasks={tasks} />}
       <TaskList>
         {
           tasks.map(({ name, id, done }, index) => {
@@ -67,6 +61,7 @@ function App() {
       </TaskList>
 
       <NewTaskItem createTask={createTask} />
+      {/* <Form /> */}
     </React.Fragment>
   );
 }
