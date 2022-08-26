@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import AwesomeComponent from './routing/App';
 import reportWebVitals from './reportWebVitals';
-import Title from './Title';
-import Divider from './Divider';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

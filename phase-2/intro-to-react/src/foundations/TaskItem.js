@@ -1,23 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 function TaskItem({ name, handleClick, done }) {
-
-    const currentLi = useRef(null);
+    
+    useEffect(() => {
+        // this is here just to show the re-render capability of react-testing library
+        done && handleClick()
+    }, [done])
 
     const markAsDone = () => {
-        console.log(currentLi.current)
         handleClick()
     }
 
-
-    useEffect(() => {
-        return () => {
-            currentLi.current.removeEventListener('onKeyDown');
-        }
-    }, []) 
-
-
-    return <li ref={currentLi} onClick={markAsDone}>{name} {done && ' Task complete'}</li>
+    return <li onClick={markAsDone}>{name} {done && ' Task complete'}</li>
 }
 
 // class TaskItem extends React.Component {
